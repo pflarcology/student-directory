@@ -23,9 +23,11 @@ def print_header
 end
 
 def print(students)
+  count = 0
   students.each_with_index do |student, index|
-    if student[:name].start_with?('d', 'D')
-      puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    if student[:name].length <= 12
+      count += 1
+      puts "#{count}. #{student[:name]} (#{student[:cohort]} cohort)"
     else
     end
   end
@@ -34,7 +36,7 @@ end
 def print_footer(names)
   count = 0 
   names.each do |student|
-    if student[:name].start_with?('d', 'D')
+    if student[:name].length <= 12
       count += 1
     else
     end
