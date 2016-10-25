@@ -10,16 +10,13 @@ def input_students
     # add the student hash to the array
     puts "What cohort are they part of?"
     cohort = gets.chomp
-    if cohort == ""
+    if cohort.empty?
       cohort = :november
-    else 
-      cohort.downcase.to_sym
+    elsif cohort = "January" || "February" || "March" || "April" || "May" || "June" || "July" || "August" || "September" || "October" || "November" || "December" 
+      puts "Did you tupe that correctly?"
+      cohort = gets.chomp
     end
-    puts "What about their country of birth?"
-    cob = gets.chomp
-    puts "And most importantly, what's their height?"
-    height = gets.chomp
-    students << {name: name, cohort: cohort, height: height, cob: cob}
+    students << {name: name, cohort: cohort.downcase.to_sym}
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
@@ -34,11 +31,9 @@ def print_header
 end
 
 def print(students)
-  count = 0
-  total = students.size
-  while count < total
-    puts ("#{count+1} #{students[count][:name]} #{students[count][:cohort]} #{students[count][:height]}".center(50))
-    count += 1
+  students.sort_by do |student|
+    student[:cohort]
+    puts "#{student[:name]} (#{student[:cohort]} cohort)."
   end
 end
 
