@@ -19,7 +19,11 @@ def input_students
       cohort = gets.strip
     end
     students << {name: name, cohort: cohort.to_sym}
-    puts "Now we have #{students.count} students"
+    if students.count == 1
+      puts "Now we have 1 student"
+    else 
+      puts "No we have #{students.count} students"
+    end
     # get another name from the user
     name = gets.strip
   end
