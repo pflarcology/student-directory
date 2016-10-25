@@ -12,11 +12,13 @@ def input_students
     cohort = gets.chomp
     if cohort.empty?
       cohort = :november
-    elsif cohort = "January" || "February" || "March" || "April" || "May" || "June" || "July" || "August" || "September" || "October" || "November" || "December" 
-      puts "Did you tupe that correctly?"
+    elsif cohort == "January" || cohort == "February" || cohort == "March" || cohort == "April" || cohort == "May" || cohort == "June" || cohort == "July" || cohort == "August" || cohort == "September" || cohort == "October" || cohort == "November" || cohort == "December" 
+      cohort = cohort
+    else
+    puts "Did you type that correctly?"
       cohort = gets.chomp
     end
-    students << {name: name, cohort: cohort.downcase.to_sym}
+    students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
@@ -31,10 +33,9 @@ def print_header
 end
 
 def print(students)
-  students.sort_by do |student|
-    student[:cohort]
-    puts "#{student[:name]} (#{student[:cohort]} cohort)."
-  end
+  puts "What cohort do you want to see?"
+  students.sort_by { |k| k[:cohort] }
+  puts students
 end
 
 def print_footer(students)
