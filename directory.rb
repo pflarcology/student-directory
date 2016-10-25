@@ -32,19 +32,23 @@ def input_students
 end
 
 def print_header
-  puts ("The students of Villains Academy".center(50))
-  puts ("-------------".center(50))
+    puts ("The students of Villains Academy".center(50))
+    puts ("-------------".center(50))
 end
 
 def print(students)
-  sorted = students.sort_by { |hsh| hsh[:cohort] }
-  sorted.each do |sorted|
-    puts "#{sorted[:name]} #{sorted[:cohort]}"
+  if students.count > 0
+    sorted = students.sort_by { |hsh| hsh[:cohort] }
+    sorted.each do |sorted|
+      puts "#{sorted[:name]} #{sorted[:cohort]}"
+    end
+  else
+    puts ("There are no students at Villains Academy".center(50))
   end
 end
 
 def print_footer(students)
-  puts("Overall, we have #{students.count} great students".center(50))
+    puts("Overall, we have #{students.count} great students".center(50))
 end
 
 students = input_students
