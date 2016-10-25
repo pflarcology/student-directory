@@ -4,24 +4,24 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.strip
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
     puts "What cohort are they part of?"
-    cohort = gets.chomp
+    cohort = gets.strip
     if cohort.empty?
       cohort = :november
     elsif cohort == "January" || cohort == "February" || cohort == "March" || cohort == "April" || cohort == "May" || cohort == "June" || cohort == "July" || cohort == "August" || cohort == "September" || cohort == "October" || cohort == "November" || cohort == "December" 
       cohort = cohort
     else
     puts "Did you type that correctly?"
-      cohort = gets.chomp
+      cohort = gets.strip
     end
     students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{students.count} students"
     # get another name from the user
-    name = gets.chomp
+    name = gets.strip
   end
   # return the array of students
   students
