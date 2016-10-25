@@ -33,9 +33,10 @@ def print_header
 end
 
 def print(students)
-  puts "What cohort do you want to see?"
-  students.sort_by { |k| k[:cohort] }
-  puts students
+  sorted = students.sort_by { |hsh| hsh[:cohort] }
+  sorted.each do |sorted|
+    puts "#{sorted[:name]} #{sorted[:cohort]}"
+  end
 end
 
 def print_footer(students)
