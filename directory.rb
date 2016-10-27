@@ -2,7 +2,6 @@
 @students = [] # an empty array accessible to all methods
 
 def save_students
-  # open the file for writing
   file = File.open("students.csv", "w")
   # iterate over the array of students
   @students.each do |student|
@@ -79,20 +78,20 @@ end
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
-  # get the first name
   name = STDIN.gets.chomp
-  # while the name is not empty, repeat this code
+  adding_name(name)
+end
+
+
+def adding_name(name)
   while !name.empty? do
-    # add the student hash to the array
     puts "What cohort are they part of?"
     cohort = STDIN.gets.chomp
     adding_students(name, cohort)
     puts "Now we have #{@students.count} students"
-    # get another name from the user
     name = STDIN.gets.chomp
   end
 end
-
 
 def adding_students(name, cohort)
   @students << {name: name, cohort: cohort.to_sym}
