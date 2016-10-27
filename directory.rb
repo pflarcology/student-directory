@@ -1,9 +1,8 @@
 
 @students = [] # an empty array accessible to all methods
 
-def save_students
-  file = File.open("students.csv", "w")
-  # iterate over the array of students
+def save_students(filename)
+  file = File.open(filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -19,6 +18,11 @@ def load_students(filename = "students.csv")
     adding_students(name, cohort)
   end
   file.close
+end
+
+def choose_file
+  puts "From which file?"
+  filename = gets.chomp
 end
 
 def try_load_students
@@ -37,8 +41,8 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to a file of your choosing"
+  puts "4. Load the list from a file of your choosing"
   puts "9. Exit" # 9 because we'll be adding more items later
 end
 
@@ -58,10 +62,12 @@ def process(selection)
       show_students
     when "3"
       selection_successful(selection)
-      save_students
+      choose_file
+      x = choose_file
+      save_students(x)
     when "4"
       selection_successful(selection)
-      load_students
+      load_students(choose_file)
     when "9"
       selection_successful(selection)
       exit
@@ -70,8 +76,8 @@ def process(selection)
   end
 end
 
-def selection_successful(x)
-  puts "You have successfully chosen menu option #{x}."
+def selection_successful(b)
+  puts "You have successfully chosen menu option #{b}."
 end
 
 def interactive_menu
