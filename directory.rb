@@ -2,22 +2,22 @@
 @students = [] # an empty array accessible to all methods
 
 def save_students(filename)
-  file = File.open(filename, "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  File.open(filename, "w") do |file|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
   end
-  file.close
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    adding_students(name, cohort)
+  File.open(filename, "r") do |file|
+    file.readlines.each do |line|
+      name, cohort = line.chomp.split(',')
+      adding_students(name, cohort)
+    end
   end
-  file.close
 end
 
 def choose_file
@@ -62,9 +62,7 @@ def process(selection)
       show_students
     when "3"
       selection_successful(selection)
-      choose_file
-      x = choose_file
-      save_students(x)
+      save_students(choose_file)
     when "4"
       selection_successful(selection)
       load_students(choose_file)
@@ -81,7 +79,6 @@ def selection_successful(b)
 end
 
 def interactive_menu
-  load_students()
   loop do
     print_menu
     process(STDIN.gets.chomp)
