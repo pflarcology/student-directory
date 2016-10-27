@@ -24,13 +24,14 @@ end
 
 def try_load_students
   filename = ARGV.first # first argument from the command line
-  return if filename.nil? # get out of the method if it isn't given
+  if filename.nil?
+    filename = "students.csv"
+  end
   if File.exists?(filename) # if it exists
    load_students(filename)
    puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
    puts "Sorry, #{filename} doesn't exist."
-   exit # quit the program
   end
 end
 
@@ -67,6 +68,7 @@ end
 
 
 def interactive_menu
+  load_students()
   loop do
     print_menu
     process(STDIN.gets.chomp)
@@ -111,7 +113,7 @@ end
 
 
 def print_footer
-    puts("Overall, we have  great students".center(50))
+    puts("Overall, we have #{@students.count} great students".center(50))
 end
 
 try_load_students
