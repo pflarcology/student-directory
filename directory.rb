@@ -51,20 +51,28 @@ end
 def process(selection)
   case selection
     when "1"
+      selection_successful(selection)
       input_students
     when "2"
+      selection_successful(selection)
       show_students
     when "3"
+      selection_successful(selection)
       save_students
     when "4"
+      selection_successful(selection)
       load_students
     when "9"
+      selection_successful(selection)
       exit
     else
       puts "I don't know you meant, try again"
   end
 end
 
+def selection_successful(x)
+  puts "You have successfully chosen menu option #{x}."
+end
 
 def interactive_menu
   load_students()
